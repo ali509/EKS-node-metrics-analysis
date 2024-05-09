@@ -6,6 +6,7 @@ creating a new file with a timestamp each time it executes. To collect and expos
 Here I have used EKS (Elastic kubernetes service).This document provides a step-by-step guide on the design, deployment, and usage of the solution, along with the necessary code and configuration files.
 
 Directory Structure of files :
+
 project-root/
 │
 ├── Dockerfile/
