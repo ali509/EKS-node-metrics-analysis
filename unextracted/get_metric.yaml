@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-pvc03
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-container
+      image: 204871/hotels_service:latest
+      volumeMounts:
+        - name: data-pvc03
+          mountPath: /data
+  volumes:
+    - name: data-pvc03
+      persistentVolumeClaim:
+        claimName: data-pvc03
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: my-cronjob
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: cron-container
+              image: hussenali/node-get-matrices-02:v1
+              volumeMounts:
+                - name: data-pvc03
+                  mountPath: /data
+              resources:
+                requests:
+                  memory: "64Mi"
+                  cpu: "250m"
+                limits:
+                  memory: "128Mi"
+                  cpu: "500m"
+          volumes:
+            - name: data-pvc03
+              persistentVolumeClaim:
+                claimName: data-pvc03
+

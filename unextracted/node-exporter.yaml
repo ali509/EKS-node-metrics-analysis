@@ -1,0 +1,68 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-exporter
+  namespace: monitoring
+spec:
+  selector:
+    k8s-app: node-exporter
+  ports:
+    - protocol: TCP
+      port: 9100
+      targetPort: 9100
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-exporter-textfile
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    scrape_configs:
+    - job_name: 'node-exporter'
+      static_configs:
+      - targets: ['node-exporter:9100']
+    - job_name: 'custom-metrics'
+      static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          group: 'custom'
+      file_sd_configs:
+      - files:
+        - /var/lib/node-exporter-textfile-metrics/*.prom
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-exporter
+  namespace: monitoring
+  labels:
+    k8s-app: node-exporter
+spec:
+  selector:
+    matchLabels:
+      k8s-app: node-exporter
+  template:
+    metadata:
+      labels:
+        k8s-app: node-exporter
+    spec:
+      containers:
+      - name: node-exporter
+        image: prom/node-exporter:latest
+        ports:
+        - name: http
+          containerPort: 9100
+          protocol: TCP
+        volumeMounts:
+        - name: textfile-metrics
+          mountPath: /var/lib/node-exporter-textfile-metrics
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      volumes:
+      - name: textfile-metrics
+        emptyDir: {}
+
