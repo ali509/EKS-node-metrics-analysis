@@ -74,8 +74,8 @@ Images are pushed to Docker Hub.
    - Open a web browser and navigate to the Node Exporter URL (typically in the format `http://<node-exporter-ip>:<port>/metrics`).
    - Verify that metrics are being exposed and can be accessed from the Node Exporter endpoint.
 
-<img width="619" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis/assets/39634565/df6e5de1-5f30-4e01-bb68-9bec73b32c00">
-<img width="656" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis/assets/39634565/08bac891-44f3-4579-9b8a-7993576ea1dd">
+      <img width="619" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis/assets/39634565/df6e5de1-5f30-4e01-bb68-9bec73b32c00">
+      <img width="656" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis/assets/39634565/08bac891-44f3-4579-9b8a-7993576ea1dd">
 
 
 6. **Validation and Monitoring:**
