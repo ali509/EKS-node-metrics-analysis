@@ -81,3 +81,5 @@ Images are pushed to Docker Hub.
 6. **Validation and Monitoring:**
    - Validate the functionality of the cron job by checking that metric data is being collected and stored persistently in the PVC.
    - Log in to the pod created using `nodemetrics.yaml`.
+      <img width="555" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis/assets/39634565/c0105acb-aa14-420d-82e9-bbda5ab5e0b9">
+
