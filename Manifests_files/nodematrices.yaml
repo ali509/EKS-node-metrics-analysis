@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-container
+      image: 204871/hotels_service:latest
+      volumeMounts:
+        - name: data-pvc03
+          mountPath: /data
+  volumes:
+    - name: data-pvc03
+      persistentVolumeClaim:
+        claimName: data-pvc03
