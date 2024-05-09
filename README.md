@@ -1,8 +1,10 @@
 # Kubernetes Node Metrics Cronjob
 
-This project aims to create a Kubernetes cronjob that pulls node metrics such as CPU, memory, and disk usage from Kubernetes nodes and stores them in individual files. The cron job is designed to run at regular intervals, creating a new file with a timestamp each time it executes. To collect and expose metrics, we utilize Node Exporter, a Prometheus exporter for hardware and OS metrics. The solution is implemented using Python scripting for the cron job, Docker for containerization, and Kubernetes YAML deployment. The deployment can be performed on a local Kubernetes setup like Minikube or Kind, or on a cloud platform’s Kubernetes flavor (e.g., EKS).
+**This project aims to create a Kubernetes cronjob that pulls node metrics such as CPU, memory, and disk usage from Kubernetes nodes and stores them in individual files.** 
 
-Here I have used EKS (Elastic kubernetes service).This document provides a step-by-step guide on the design, deployment, and usage of the solution, along with the necessary code and configuration files. 
+The cron job is designed to run at regular intervals, creating a new file with a timestamp each time it executes. To collect and expose metrics, we utilize **Node Exporter**, a Prometheus exporter for hardware and OS metrics. The solution is implemented using Python scripting for the cron job, Docker for containerization, and Kubernetes YAML deployment. The deployment can be performed on a local Kubernetes setup like Minikube or Kind, or on a cloud platform’s Kubernetes flavor (e.g., EKS).
+
+Here I have used **EKS (Elastic kubernetes service)**.This document provides a step-by-step guide on the design, deployment, and usage of the solution, along with the necessary code and configuration files. 
 
 ## Directory Structure of files :
 
